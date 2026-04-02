@@ -1,0 +1,40 @@
+---
+- name: Set target web host IP
+  set_fact:
+    web_target_ip: "{{ hostvars[groups.web[0]].inventory_hostname }}"
+  tags: verification
+
+- name: Wait for Nginx to be ready
+  uri:
+    url: 'http://{{ web_target_ip }}'
+    method: GET
+    status_code: 200
+  register: nginx_status
+  retries: 5
+  delay: 5
+  until: nginx_status.status == 200
+  tags: verification
+
+- name: Verify deployment - HTTP status code is 200
+  uri:
+    url: 'http://{{ web_target_ip }}'
+    method: GET
+  register: deployment_check
+  tags: verification
+
+- name: Assert HTTP response status is 200
+  assert:
+    that:
+      - deployment_check.status == 200
+    fail_msg: 'Deployment verification failed. HTTP status: {{ deployment_check.status }}'
+    success_msg: 'Deployment verified successfully. Site is accessible with HTTP 200'
+  tags: verification
+
+- name: Display deployment verification result
+  debug:
+    msg:
+      - 'Deployment Verification Results:'
+      - 'URL: http://{{ web_target_ip }}'
+      - 'Status Code: {{ deployment_check.status }}'
+      - 'Content-Type: {{ deployment_check.get("headers", {}).get("Content-Type", "N/A") }}'
+  tags: verification

@@ -1,0 +1,7 @@
+---
+- name: reload nginx on content changes
+  systemd:
+    name: nginx
+    state: reloaded
+  listen: reload nginx
+

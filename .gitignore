@@ -1,0 +1,97 @@
+# Terraform State Files (SENSITIVE)
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Terraform Variables (SENSITIVE - contains configuration)
+terraform/terraform.tfvars
+!terraform/terraform.tfvars.example
+
+# SSH Keys (SENSITIVE)
+.ssh/
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+!*.pub
+
+# AWS Credentials (SENSITIVE)
+.aws/
+~/.aws/
+
+# Environment Variables (SENSITIVE)
+.env
+.env.local
+.env.*.local
+
+# Ansible Inventory with IPs (SENSITIVE)
+ansible/inventory.ini
+!ansible/inventory.ini.example
+
+# Ansible Configuration with sensitive paths
+ansible/ansible.cfg
+
+# Ansible Facts Cache
+/tmp/ansible_facts/
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.egg-info/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE/Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+*.sublime-project
+*.sublime-workspace
+.vim/
+*.vimrc
+
+# Build/Output Files
+dist/
+build/
+*.tar.gz
+*.zip
+
+# OS Files
+Thumbs.db
+.Thumbs.db
+*.iso
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Logs (optional - be careful what logs contain)
+*.log
+logs/
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Misc
+.DS_Store
+._.DS_Store
+*.orig
+.gradle/
+node_modules/

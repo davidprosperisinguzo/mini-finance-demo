@@ -1,0 +1,50 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  tags: packages
+
+- name: Install Nginx and Git
+  apt:
+    name:
+      - nginx
+      - git
+    state: present
+  tags: packages
+
+- name: Start and enable Nginx service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  tags: services
+
+- name: Configure Nginx to serve the site
+  copy:
+    content: |
+      server {
+        listen 80;
+        server_name _;
+        root /var/www/html;
+        index index.html;
+        location / {
+          try_files $uri /index.html;
+        }
+        error_page 404 /index.html;
+      }
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: '0644'
+  notify: reload nginx
+  tags: configuration
+
+- name: Enable Nginx default site
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify: reload nginx
+  tags: configuration

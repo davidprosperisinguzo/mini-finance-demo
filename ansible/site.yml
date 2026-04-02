@@ -1,0 +1,17 @@
+---
+- name: Mini Finance - Install, Deploy, and Verify
+  hosts: web
+  become: true
+  gather_facts: true
+
+  roles:
+    - role: nginx
+      tags: nginx
+    
+    - role: deployment
+      tags: deployment
+    
+    - role: verification
+      tags: verification
+      delegate_to: localhost
+      become: false
