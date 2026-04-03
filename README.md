@@ -2,7 +2,7 @@
 
 A comprehensive Infrastructure as Code (IaC) solution for provisioning and deploying the Mini Finance application on AWS using Terraform for infrastructure and Ansible for application deployment.
 
-> **⚠️ IMPORTANT**: Before using this project, please read the [Security & Warnings](#security--warnings) section below.
+> **IMPORTANT**: Before using this project, please read the [Security & Warnings](#security--warnings) section below.
 
 ## Table of Contents
 
@@ -404,7 +404,7 @@ curl http://$PUBLIC_IP
 # Expected output: Mini Finance HTML content
 ```
 
-## ⚠️ Security & Warnings
+## Security & Warnings
 
 ### CRITICAL: Network Security Issues
 
@@ -417,7 +417,7 @@ ingress {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]  # ⚠️ INSECURE: Entire internet can attempt SSH
+  cidr_blocks = ["0.0.0.0/0"]  # INSECURE: Entire internet can attempt SSH
 }
 ```
 
@@ -505,7 +505,7 @@ No CloudWatch alarms, logging, or intrusion detection. Add:
 
 Before using this project:
 
-- [ ] Read and understand all ⚠️ warnings above
+- [ ] Read and understand all warnings above
 - [ ] This is for **learning, demos, and testing ONLY**
 - [ ] Do **not** use production data with this configuration
 - [ ] Use in isolated **development AWS account**
@@ -923,7 +923,7 @@ If you encounter issues or have questions:
    - Review [FIXES_APPLIED.md](FIXES_APPLIED.md) for detailed fix descriptions
 
 3. **Verify Security Requirements**
-   - Read [⚠️ Security & Warnings](#-security--warnings) section carefully
+   - Read [Security & Warnings](#-security--warnings) section carefully
    - Ensure you understand production implications before modifying
 
 ### Using This Project
